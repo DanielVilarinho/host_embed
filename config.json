@@ -1,0 +1,22 @@
+{
+  "app_name": "Intellibrand Portal",
+  "dashboards": [
+    {
+      "id": "assortment",
+      "label": "Assortment",
+      "url_base_pathname": "https://prometheus.intellibrand.ai/embedtest"
+    }
+  ],
+  "users": [
+    {
+      "username": "daniel",
+      "full_name": "Daniel Sousa",
+      "companies": ["Unilever", "Electrolux", "Aché"]
+    },
+    {
+      "username": "fabiano",
+      "full_name": "Fabiano Cheque",
+      "companies": ["Heineken", "Kenvue - Perú", "Newell Brands","SC Johnson - Chile"]
+    }
+  ]
+}
