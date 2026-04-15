@@ -17,6 +17,11 @@
       "username": "fabiano",
       "full_name": "Fabiano Cheque",
       "companies": ["Heineken", "Kenvue - Perú", "Newell Brands","SC Johnson - Chile"]
+    },
+    {
+      "username": "teste1",
+      "full_name": "Teste1,
+      "companies": ["LG", "EE - Combe - AR", "SC Johnson - Argentina","Seara - Kit Festa"]
     }
   ]
 }
