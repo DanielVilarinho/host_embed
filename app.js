@@ -137,11 +137,17 @@ function renderDashboardButtons() {
 
   return dashboards
     .map((d) => {
+      const isActive = state.selectedDashboardId === d.id;
+
       return `
-      <button class="dashboard-btn" data-dashboard-id="${d.id}">
-        ${d.label}
-      </button>
-    `;
+        <button
+          class="dashboard-btn ${isActive ? "dashboard-btn--active" : ""}"
+          data-dashboard-id="${d.id}"
+          type="button"
+        >
+          ${d.label}
+        </button>
+      `;
     })
     .join("");
 }
@@ -187,15 +193,15 @@ function renderApp() {
         </div>
       </header>
 
-      <div class="portal-body portal-body--full">
-        <div class="dashboard-topbar">
-          <div class="dashboard-topbar-title">Dashboards</div>
-          <div class="dashboard-buttons dashboard-buttons--horizontal">
-            ${renderDashboardButtons()}
+      <div class="portal-body">
+        <main class="content">
+          <div class="dashboard-toolbar">
+            <div class="dashboard-toolbar-title">Dashboards</div>
+            <div class="dashboard-buttons">
+              ${renderDashboardButtons()}
+            </div>
           </div>
-        </div>
 
-        <main class="content content--full">
           <div class="content-header">
             <div id="content-title" class="content-title">Selecione um dashboard</div>
             <div id="content-subtitle" class="content-subtitle"></div>
@@ -222,7 +228,7 @@ function renderApp() {
     saveSession();
 
     if (state.selectedDashboardId) {
-      updateOrMountEmbeddedDashboard();
+      updateOrMountEmbeddedDashboard(false);
     }
   });
 
@@ -231,10 +237,15 @@ function renderApp() {
       const newDashboardId = btn.getAttribute("data-dashboard-id");
       console.log("Dashboard selecionado =", newDashboardId);
 
+      if (state.selectedDashboardId !== newDashboardId) {
+        embedController.mountedDashboardId = null;
+        embedController.setter = null;
+      }
+
       state.selectedDashboardId = newDashboardId;
       saveSession();
 
-      updateOrMountEmbeddedDashboard(true);
+      renderApp();
     });
   });
 
@@ -308,7 +319,10 @@ function updateOrMountEmbeddedDashboard(forceRemount = false) {
   }
 
   try {
-    mountNode.innerHTML = "";
+    const mountParent = mountNode.parentNode;
+    const freshMountNode = document.createElement("div");
+    freshMountNode.id = "dash-app";
+    mountParent.replaceChild(freshMountNode, mountNode);
 
     console.log("Vai chamar renderDash2...");
     const setter = window.dash_embedded_component.renderDash(

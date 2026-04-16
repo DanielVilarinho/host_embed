@@ -5,7 +5,11 @@
       "id": "assortment",
       "label": "Assortment",
       "url_base_pathname": "https://prometheus.intellibrand.ai/embedtest"
-    }
+    },
+    {"id": "postgresTest", 
+    "label": "Postgres Test",
+    "url_base_pathname": "https://prometheus.intellibrand.ai/potgres"}
+
   ],
   "users": [
     {
