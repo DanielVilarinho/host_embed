@@ -187,15 +187,15 @@ function renderApp() {
         </div>
       </header>
 
-      <div class="portal-body">
-        <aside class="sidebar">
-          <div class="sidebar-title">Dashboards</div>
-          <div class="dashboard-buttons">
+      <div class="portal-body portal-body--full">
+        <div class="dashboard-topbar">
+          <div class="dashboard-topbar-title">Dashboards</div>
+          <div class="dashboard-buttons dashboard-buttons--horizontal">
             ${renderDashboardButtons()}
           </div>
-        </aside>
+        </div>
 
-        <main class="content">
+        <main class="content content--full">
           <div class="content-header">
             <div id="content-title" class="content-title">Selecione um dashboard</div>
             <div id="content-subtitle" class="content-subtitle"></div>
